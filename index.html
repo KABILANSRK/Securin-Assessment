@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Collection - Frontend</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Recipe Collection</h1>
+            <div class="controls">
+                <div class="results-per-page">
+                    <label for="resultsPerPage">Results per page:</label>
+                    <select id="resultsPerPage">
+                        <option value="15">15</option>
+                        <option value="25">25</option>
+                        <option value="35">35</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <div class="filters-section">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label>Title</label>
+                    <input type="text" id="filterTitle" placeholder="Filter by title...">
+                </div>
+                <div class="filter-group">
+                    <label>Cuisine</label>
+                    <input type="text" id="filterCuisine" placeholder="Filter by cuisine...">
+                </div>
+                <div class="filter-group">
+                    <label>Rating</label>
+                    <select id="filterRating">
+                        <option value="">All Ratings</option>
+                        <option value="5">5 Stars</option>
+                        <option value="4">4+ Stars</option>
+                        <option value="3">3+ Stars</option>
+                        <option value="2">2+ Stars</option>
+                        <option value="1">1+ Stars</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Total Time</label>
+                    <input type="number" id="filterTime" placeholder="Max minutes...">
+                </div>
+                <div class="filter-group">
+                    <label>Serves</label>
+                    <input type="number" id="filterServes" placeholder="Min people...">
+                </div>
+                <button id="clearFilters" class="btn-secondary">Clear All</button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="recipesTable">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Cuisine</th>
+                        <th>Rating</th>
+                        <th>Total Time</th>
+                        <th>Serves</th>
+                    </tr>
+                </thead>
+                <tbody id="recipesTableBody">
+                    <!-- JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <button id="prevPage" class="btn-secondary">Previous</button>
+            <span id="pageInfo">Page 1 of 1</span>
+            <button id="nextPage" class="btn-secondary">Next</button>
+        </div>
+
+        <!-- Fallback screens -->
+        <div id="noData" class="fallback-screen" style="display: none;">
+            <h2>No Recipe Data Available</h2>
+            <p>There are no recipes in the collection yet. Please check back later.</p>
+        </div>
+
+        <div id="noResults" class="fallback-screen" style="display: none;">
+            <h2>No Results Found</h2>
+            <p>Try adjusting your filters or search terms to find what you're looking for.</p>
+        </div>
+
+        <!-- Loading spinner -->
+        <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading recipes...</p>
+        </div>
+    </div>
+
+    <!-- Detail Drawer -->
+    <div id="detailDrawer" class="drawer">
+        <div class="drawer-content">
+            <div class="drawer-header">
+                <h2 id="drawerTitle"></h2>
+                <button id="closeDrawer" class="close-btn">&times;</button>
+            </div>
+            <div class="drawer-body">
+                <div class="recipe-details">
+                    <div class="detail-section">
+                        <h3>Description</h3>
+                        <p id="recipeDescription"></p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>Cooking Time</h3>
+                        <div class="time-info">
+                            <p><strong>Total Time:</strong> <span id="totalTime"></span></p>
+                            <button id="expandTime" class="expand-btn">
+                                <i class="fas fa-chevron-down"></i> Show Details
+                            </button>
+                            <div id="timeDetails" class="time-details" style="display: none;">
+                                <p><strong>Cook Time:</strong> <span id="cookTime"></span></p>
+                                <p><strong>Prep Time:</strong> <span id="prepTime"></span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Nutrition Information</h3>
+                        <table class="nutrition-table">
+                            <tbody id="nutritionTableBody">
+                                <!-- Nutrition data -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
